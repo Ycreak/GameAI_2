@@ -514,7 +514,7 @@ public class ArcadeMachine {
 		sc += ", ";
 	    }
 	}
-	System.out.println("Results in game " + game_file + ", " + vict + " , " + sc);
+	System.out.println("Results in game " + game_file + ", " + vict + " (mean victory), " + sc + " (mean score)");
 	 	//+ " , " + performance.mean());
     }
 

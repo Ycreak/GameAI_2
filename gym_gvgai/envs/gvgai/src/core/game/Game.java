@@ -1162,15 +1162,15 @@ public abstract class Game {
 		String sb2 = "";
 		for (int i = 0; i < no_players; i++) {
 			if (avatars[i] != null) {
-				sb1 += "Player" + i + ":" + avatars[i].getWinState().key() + ", ";
-				sb2 += "Player" + i + "-Score:" + avatars[i].getScore() + ", ";
+				sb1 += "Result: " + avatars[i].getWinState().key() + "; ";
+				sb2 += "Score: " + avatars[i].getScore() + "; ";
 			} else {
-				sb1 += "Player" + i + ":-100, ";
-				sb2 += "Player" + i + "-Score:" + Types.SCORE_DISQ + ", ";
+				sb1 += "Your player" + i + ":-100, ";
+				sb2 += "Your player" + i + "-Score:" + Types.SCORE_DISQ + ", ";
 			}
 		}
 
-		System.out.println("Result (1->win; 0->lose): " + sb1 + sb2 + "timesteps:" + this.getGameTick());
+		System.out.println(sb1 + sb2 + "timesteps:" + this.getGameTick());
 		// System.out.println("Result (1->win; 0->lose):"+ winner.key() + ",
 		// Score:" + score + ", timesteps:" + this.getGameTick());
 	}
