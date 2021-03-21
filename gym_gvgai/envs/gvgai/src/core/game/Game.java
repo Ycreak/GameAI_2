@@ -25,6 +25,8 @@ import tools.pathfinder.PathFinder;
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
+import java.io.FileWriter;   // Import the FileWriter class
+import java.io.IOException;  // Import the IOException class to handle errors
 
 /**
  * Created with IntelliJ IDEA. User: Diego Date: 17/10/13 Time: 13:42 This is a
@@ -1160,8 +1162,14 @@ public abstract class Game {
 	public void printResult() {
 		String sb1 = "";
 		String sb2 = "";
+
+		int result = 0;
+		double score = 0.0;
+
 		for (int i = 0; i < no_players; i++) {
 			if (avatars[i] != null) {
+				result = avatars[i].getWinState().key();
+				score = avatars[i].getScore();
 				sb1 += "Result: " + avatars[i].getWinState().key() + "; ";
 				sb2 += "Score: " + avatars[i].getScore() + "; ";
 			} else {
@@ -1170,10 +1178,31 @@ public abstract class Game {
 			}
 		}
 
-		System.out.println(sb1 + sb2 + "timesteps:" + this.getGameTick());
+		int time = this.getGameTick();
+
+		System.out.println(sb1 + sb2 + "timesteps:" + time);
 		// System.out.println("Result (1->win; 0->lose):"+ winner.key() + ",
 		// Score:" + score + ", timesteps:" + this.getGameTick());
+
+		// ArrayList<String> myList = new ArrayList<>();
+
+		WriteToFile(result, score, time);
+
 	}
+
+	public void WriteToFile(int result, double score, int time) { //(String[] args) {
+		try {
+		FileWriter myWriter = new FileWriter("results.csv", true);
+		myWriter.write(result + ";" + score + ";" + time + "\n");
+		myWriter.close();
+		// System.out.println("Successfully wrote to the file.");
+		} catch (IOException e) {
+		System.out.println("An error occurred.");
+		e.printStackTrace();
+		}
+	}
+	
+
 
 	/**
 	 * Prints the result of the game, indicating the game id, level id, winner, the score and the

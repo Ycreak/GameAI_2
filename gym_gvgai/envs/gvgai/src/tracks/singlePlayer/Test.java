@@ -68,7 +68,7 @@ public class Test {
 		// }
 
 		//5. This plays N games, in the first L levels, M times each. Actions to file optional (set saveActions to true).
-		int N = games.length, L = 2, M = 1;
+		int N = games.length, L = 2, M = 5;
 		boolean saveActions = false;
 		String[] levels = new String[L];
 		String[] actionFiles = new String[L*M];

@@ -514,8 +514,26 @@ public class ArcadeMachine {
 		sc += ", ";
 	    }
 	}
-	System.out.println("Results in game " + game_file + ", " + vict + " (mean victory), " + sc + " (mean score)");
+	
+    System.out.println("Results in game " + game_file + ", " + vict + " (mean victory), " + sc + " (mean score)");
 	 	//+ " , " + performance.mean());
+
+    // // File (or directory) with old name
+    // File file = new File("results.csv");
+
+    // // File (or directory) with new name
+    // File file2 = new File(game_file);
+
+    // // if (file2.exists()){
+    // //     throw new java.io.IOException("file exists");
+    // // }
+    // // Rename file (or directory)
+    // boolean success = file.renameTo(file2);
+
+    // if (!success) {
+    //     System.out.println("error");
+    // }
+
     }
 
     /**
