@@ -1,0 +1,133 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch Current File",
+      "request": "launch",
+      "mainClass": "${file}"
+    },
+    {
+      "type": "java",
+      "name": "Launch AgentExecutor",
+      "request": "launch",
+      "mainClass": "core.competition.AgentExecutor",
+      "projectName": "GameAI_2_230ca97e"
+    },
+    {
+      "type": "java",
+      "name": "Launch AgentExecutorMulti",
+      "request": "launch",
+      "mainClass": "core.competition.AgentExecutorMulti",
+      "projectName": "GameAI_2_230ca97e"
+    },
+    {
+      "type": "java",
+      "name": "Launch GVGExecutor",
+      "request": "launch",
+      "mainClass": "core.competition.GVGExecutor",
+      "projectName": "GameAI_2_230ca97e"
+    },
+    {
+      "type": "java",
+      "name": "Launch GVGReplayer",
+      "request": "launch",
+      "mainClass": "core.competition.GVGReplayer",
+      "projectName": "GameAI_2_230ca97e"
+    },
+    {
+      "type": "java",
+      "name": "Launch LearnerExecutor",
+      "request": "launch",
+      "mainClass": "core.competition.LearnerExecutor",
+      "projectName": "GameAI_2_230ca97e"
+    },
+    {
+      "type": "java",
+      "name": "Launch ErrorTestingMultiplayer",
+      "request": "launch",
+      "mainClass": "testing.ErrorTestingMultiplayer",
+      "projectName": "GameAI_2_230ca97e"
+    },
+    {
+      "type": "java",
+      "name": "Launch ErrorTestingSingleplayer",
+      "request": "launch",
+      "mainClass": "testing.ErrorTestingSingleplayer",
+      "projectName": "GameAI_2_230ca97e"
+    },
+    {
+      "type": "java",
+      "name": "Launch OptClearJar",
+      "request": "launch",
+      "mainClass": "tools.OptClearJar",
+      "projectName": "GameAI_2_230ca97e"
+    },
+    {
+      "type": "java",
+      "name": "Launch OptEvaluateJar",
+      "request": "launch",
+      "mainClass": "tools.OptEvaluateJar",
+      "projectName": "GameAI_2_230ca97e"
+    },
+    {
+      "type": "java",
+      "name": "Launch TestGameSpace",
+      "request": "launch",
+      "mainClass": "tracks.gameDesign.TestGameSpace",
+      "projectName": "GameAI_2_230ca97e"
+    },
+    {
+      "type": "java",
+      "name": "Launch TestMultiGameSpace",
+      "request": "launch",
+      "mainClass": "tracks.gameDesign.TestMultiGameSpace",
+      "projectName": "GameAI_2_230ca97e"
+    },
+    {
+      "type": "java",
+      "name": "Launch TestLevelGeneration",
+      "request": "launch",
+      "mainClass": "tracks.levelGeneration.TestLevelGeneration",
+      "projectName": "GameAI_2_230ca97e"
+    },
+    {
+      "type": "java",
+      "name": "Launch TestMultiPlayer",
+      "request": "launch",
+      "mainClass": "tracks.multiPlayer.TestMultiPlayer",
+      "projectName": "GameAI_2_230ca97e"
+    },
+    {
+      "type": "java",
+      "name": "Launch TestRuleGeneration",
+      "request": "launch",
+      "mainClass": "tracks.ruleGeneration.TestRuleGeneration",
+      "projectName": "GameAI_2_230ca97e"
+    },
+    {
+      "type": "java",
+      "name": "Launch TestSingleLearning",
+      "request": "launch",
+      "mainClass": "tracks.singleLearning.TestSingleLearning",
+      "projectName": "GameAI_2_230ca97e"
+    },
+    {
+      "type": "java",
+      "name": "Launch JavaServer",
+      "request": "launch",
+      "mainClass": "tracks.singleLearning.utils.JavaServer",
+      "projectName": "GameAI_2_230ca97e"
+    },
+    {
+      "type": "java",
+      "name": "Launch Test",
+      "request": "launch",
+      "mainClass": "tracks.singlePlayer.Test",
+      "projectName": "GameAI_2_230ca97e"
+    }
+  ]
+}

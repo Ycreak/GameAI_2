@@ -14,7 +14,10 @@ import java.util.stream.Collectors;
 import java.util.List;
 import java.util.Arrays;
 
-
+import java.util.HashMap;
+import java.util.Map;
+// import java.util.Entry;
+import java.util.Collections;
 /**
  * Created with IntelliJ IDEA.
  * User: ssamot
@@ -29,6 +32,9 @@ public class Agent extends AbstractPlayer {
 
     protected SingleMCTSPlayer mctsPlayer;
     protected SingleMCTSPlayer mctsPlayer2;
+    protected SingleMCTSPlayer mctsPlayer3;
+    protected SingleMCTSPlayer mctsPlayer4;
+
 
 
     /**
@@ -55,9 +61,13 @@ public class Agent extends AbstractPlayer {
         
         // System.out.println(temp.nextInt());
         
-        System.out.println("Calling ACT");
+        // System.out.println("Calling ACT");
         mctsPlayer = getPlayer(so, elapsedTimer);
         mctsPlayer2 = getPlayer(so, elapsedTimer);
+        mctsPlayer3 = getPlayer(so, elapsedTimer);
+        mctsPlayer4 = getPlayer(so, elapsedTimer);
+
+
 
     }
 
@@ -75,84 +85,59 @@ public class Agent extends AbstractPlayer {
      */
     public Types.ACTIONS act(StateObservation stateObs, ElapsedCpuTimer elapsedTimer) {
 
-        //Set the state observation object as the new root of the tree.
-        // System.out.println("You called ACT");
-        // System.out.println("ACT is not here right now");
-        // System.out.println("Leave your message at the beep");
-        // System.out.println("beep.");
-
-
-
-
-        // Here we create a tree
-
+        // Add the created players to a list
 		ArrayList<SingleMCTSPlayer> myList = new ArrayList<>();
 		myList.add(mctsPlayer);
 		myList.add(mctsPlayer2);
+		myList.add(mctsPlayer3);
+		myList.add(mctsPlayer4);
 
+        //Set the state observation object as the new root of the tree.
         mctsPlayer.init(stateObs);
         mctsPlayer2.init(stateObs);
-
-        // mctsPlayer.init(stateObs);
-        // mctsPlayer2.init(stateObs);
-        // //Determine the action using MCTS...
-        // int action = mctsPlayer.run(elapsedTimer);
-        // int action2 = mctsPlayer2.run(elapsedTimer);
-
-
-        // System.out.println("Act");
-
-        //... and return it.
-
-        // System.out.println(actions[action]);
-        // System.out.println(actions[action2]);
-
-        List<Integer> intList = new ArrayList<Integer>();        
-
-        List<String>strings = Arrays.asList("abc", "", "bc", "efg", "abcd","", "jkl");
-        List<String> filtered = strings.stream().filter(string -> !string.isEmpty()).collect(Collectors.toList());
+        mctsPlayer3.init(stateObs);
+        mctsPlayer4.init(stateObs);
+    
+        // Run the players in parallel using Java's Stream function. Collect the results in a list
+        List<Integer> ensembleResult = myList.parallelStream().map(o -> o.run(elapsedTimer)).collect(Collectors.toList());
+        // System.out.println(ensembleResult);
         
-        System.out.println("Filtered List: " + filtered);
-        String mergedString = strings.stream().filter(string -> !string.isEmpty()).collect(Collectors.joining(", "));
-        System.out.println("Merged String: " + mergedString);
+        // Do a majority vote for the ensemble: use that value
+        int action = findMostCommonElement(ensembleResult);
+        // System.out.println(action);
 
-        
-        List<Integer> hello = myList.parallelStream().map(o -> o.run(elapsedTimer)).collect(Collectors.toList());
-        System.out.println(hello);
-        
-        for(int integer : hello){
-            System.out.println(actions[integer]);
-        }
-        
-        System.exit(0);
+        // System.exit(0);
 
-
-		myList.parallelStream().forEach((o) -> {
-            
-            // o.init(stateObs);
-            int action = o.run(elapsedTimer);
-            System.out.println(actions[action]);
-            // intList.add(action);
-            
-            // System.out.print(o + " ");
-		});
-        
-        System.exit(0);
-        // System.out.println("ArrayList : " + intList.toString());
-
-
-        return actions[0];
+        return actions[action];
     }
 
+    /**
+     * Finds the most common element in the given integer list.
+     * @param list of integers
+     * @return int: most common element
+     */
+    public static int findMostCommonElement(List<Integer> list) {
+        Collections.sort(list);
+
+        int mostCommon = 0;
+        int last = 0;
+        int mostCount = 0;
+        int lastCount = 0;
+        for (int x : list) {
+            if (x == last) {
+                lastCount++;
+            } 
+            if (lastCount > mostCount) {
+                mostCount = lastCount;
+                mostCommon = last;
+            }
+            last = x;
+        }
+        return mostCommon;
+    }
 }
 
-// import java.util.stream.Stream; 
-
-
-		// ArrayList<String> myList = new ArrayList<>();
-		// myList.add("Item1");
-		// myList.add("Item2");
-
-		// range.parallelStream().forEach((o) -> {
-		// 	System.out.print(o + " ");
+		// myList.parallelStream().forEach((o) -> {
+        //     int action = o.run(elapsedTimer);
+        //     System.out.println(actions[action]);
 		// });
