@@ -44,6 +44,8 @@ public class Agent extends AbstractPlayer {
         }
         NUM_ACTIONS = actions.length;
 
+        System.out.println("Agent");
+
         //Create the player.
         mctsPlayer = new SingleMCTSPlayer(new Random(), this);
     }
@@ -64,6 +66,9 @@ public class Agent extends AbstractPlayer {
         //Determine the action using MCTS...
         int action = mctsPlayer.run(elapsedTimer);
 
+        System.out.println("Act");
+
+        
         //... and return it.
         return actions[action];
     }

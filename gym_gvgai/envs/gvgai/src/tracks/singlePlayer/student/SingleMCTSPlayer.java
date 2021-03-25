@@ -1,4 +1,4 @@
-package tracks.singlePlayer.advanced.sampleMCTS;
+package tracks.singlePlayer.student;
 
 import java.util.Random;
 

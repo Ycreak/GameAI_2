@@ -1,4 +1,4 @@
-package tracks.singlePlayer.advanced.sampleMCTS;
+package tracks.singlePlayer.student;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -7,6 +7,13 @@ import core.game.StateObservation;
 import core.player.AbstractPlayer;
 import ontology.Types;
 import tools.ElapsedCpuTimer;
+
+// For multicore
+import java.util.stream.Stream; 
+import java.util.stream.Collectors;
+import java.util.List;
+import java.util.Arrays;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -50,7 +57,7 @@ public class Agent extends AbstractPlayer {
         
         System.out.println("Calling ACT");
         mctsPlayer = getPlayer(so, elapsedTimer);
-        // mctsPlayer2 = getPlayer(so, elapsedTimer);
+        mctsPlayer2 = getPlayer(so, elapsedTimer);
 
     }
 
@@ -69,22 +76,72 @@ public class Agent extends AbstractPlayer {
     public Types.ACTIONS act(StateObservation stateObs, ElapsedCpuTimer elapsedTimer) {
 
         //Set the state observation object as the new root of the tree.
-        System.out.println("You called ACT");
+        // System.out.println("You called ACT");
+        // System.out.println("ACT is not here right now");
+        // System.out.println("Leave your message at the beep");
+        // System.out.println("beep.");
+
+
+
 
         // Here we create a tree
 
-        mctsPlayer.init(stateObs);
+		ArrayList<SingleMCTSPlayer> myList = new ArrayList<>();
+		myList.add(mctsPlayer);
+		myList.add(mctsPlayer2);
 
-        //Determine the action using MCTS...
-        int action = mctsPlayer.run(elapsedTimer);
+        mctsPlayer.init(stateObs);
+        mctsPlayer2.init(stateObs);
+
+        // mctsPlayer.init(stateObs);
+        // mctsPlayer2.init(stateObs);
+        // //Determine the action using MCTS...
+        // int action = mctsPlayer.run(elapsedTimer);
+        // int action2 = mctsPlayer2.run(elapsedTimer);
+
+
         // System.out.println("Act");
 
         //... and return it.
 
-        System.out.println(actions[action]);
+        // System.out.println(actions[action]);
+        // System.out.println(actions[action2]);
+
+        List<Integer> intList = new ArrayList<Integer>();        
+
+        List<String>strings = Arrays.asList("abc", "", "bc", "efg", "abcd","", "jkl");
+        List<String> filtered = strings.stream().filter(string -> !string.isEmpty()).collect(Collectors.toList());
+        
+        System.out.println("Filtered List: " + filtered);
+        String mergedString = strings.stream().filter(string -> !string.isEmpty()).collect(Collectors.joining(", "));
+        System.out.println("Merged String: " + mergedString);
+
+        
+        List<Integer> hello = myList.parallelStream().map(o -> o.run(elapsedTimer)).collect(Collectors.toList());
+        System.out.println(hello);
+        
+        for(int integer : hello){
+            System.out.println(actions[integer]);
+        }
+        
+        System.exit(0);
 
 
-        return actions[action];
+		myList.parallelStream().forEach((o) -> {
+            
+            // o.init(stateObs);
+            int action = o.run(elapsedTimer);
+            System.out.println(actions[action]);
+            // intList.add(action);
+            
+            // System.out.print(o + " ");
+		});
+        
+        System.exit(0);
+        // System.out.println("ArrayList : " + intList.toString());
+
+
+        return actions[0];
     }
 
 }
