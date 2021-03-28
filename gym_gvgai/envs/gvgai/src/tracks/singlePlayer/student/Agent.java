@@ -30,12 +30,9 @@ public class Agent extends AbstractPlayer {
     public int num_actions;
     public Types.ACTIONS[] actions;
 
-    protected SingleMCTSPlayer mctsPlayer;
-    protected SingleMCTSPlayer mctsPlayer2;
-    protected SingleMCTSPlayer mctsPlayer3;
-    protected SingleMCTSPlayer mctsPlayer4;
-
-    protected ArrayList<SingleMCTSPlayer> playerList;
+    // Init a playerlist
+    protected ArrayList<SingleMCTSPlayer> playerList = new ArrayList<>();
+    private boolean debugging = false;
 
     /**
      * Public constructor with state observation and time due.
@@ -50,32 +47,19 @@ public class Agent extends AbstractPlayer {
         for(int i = 0; i < actions.length; ++i)
         {
             actions[i] = act.get(i);
-            
         }
         
         num_actions = actions.length;
         
-        //Create the player.
+        // Create several players to run simultaniously and add them to a list
+        int num_threads = 8;
 
-        // ArrayList<SingleMCTSPlayer> playerList = new ArrayList<>();
-
-        for(int i = 0; i < 4; i++){
+        for(int i = 0; i < num_threads; i++){
             SingleMCTSPlayer newPlayer = getPlayer(so, elapsedTimer);
             playerList.add(newPlayer);
         }
-        System.out.println(playerList);
-
-        // System.exit(0);
-
-
-        mctsPlayer4 = getPlayer(so, elapsedTimer);
-
-        mctsPlayer = getPlayer(so, elapsedTimer);
-        mctsPlayer2 = getPlayer(so, elapsedTimer);
-        mctsPlayer3 = getPlayer(so, elapsedTimer);
-        // mctsPlayer4 = getPlayer(so, elapsedTimer);
-
-
+        
+        if(debugging) System.out.println(playerList);
 
     }
 
@@ -93,32 +77,20 @@ public class Agent extends AbstractPlayer {
      */
     public Types.ACTIONS act(StateObservation stateObs, ElapsedCpuTimer elapsedTimer) {
 
-        // Add the created players to a list
-		// ArrayList<SingleMCTSPlayer> myList = new ArrayList<>();
-		// myList.add(mctsPlayer);
-		// myList.add(mctsPlayer2);
-		// myList.add(mctsPlayer3);
-		// myList.add(mctsPlayer4);
-
-
         for(SingleMCTSPlayer player : playerList ){
+            //Set the state observation object as the new root of the tree.
             player.init(stateObs);
         }
-        //Set the state observation object as the new root of the tree.
-        // mctsPlayer.init(stateObs);
-        // mctsPlayer2.init(stateObs);
-        // mctsPlayer3.init(stateObs);
-        // mctsPlayer4.init(stateObs);
     
         // Run the players in parallel using Java's Stream function. Collect the results in a list
         List<Integer> ensembleResult = playerList.parallelStream().map(o -> o.run(elapsedTimer)).collect(Collectors.toList());
-        System.out.println(ensembleResult);
+        if(debugging) System.out.println(ensembleResult);
         
         // Do a majority vote for the ensemble: use that value
         int action = findMostCommonElement(ensembleResult);
-        System.out.println(action);
+        if(debugging) System.out.println(action);
 
-        System.exit(0);
+        if(debugging) System.exit(0);
 
         return actions[action];
     }
@@ -148,8 +120,3 @@ public class Agent extends AbstractPlayer {
         return mostCommon;
     }
 }
-
-		// myList.parallelStream().forEach((o) -> {
-        //     int action = o.run(elapsedTimer);
-        //     System.out.println(actions[action]);
-		// });

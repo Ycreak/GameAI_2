@@ -1172,6 +1172,10 @@ public abstract class Game {
 				score = avatars[i].getScore();
 				sb1 += "Result: " + avatars[i].getWinState().key() + "; ";
 				sb2 += "Score: " + avatars[i].getScore() + "; ";
+
+				// myState = avatars[i].getWinState().key(); 
+				// myScore = avatars[i].getScore();
+
 			} else {
 				sb1 += "Your player" + i + ":-100, ";
 				sb2 += "Your player" + i + "-Score:" + Types.SCORE_DISQ + ", ";
@@ -1180,7 +1184,10 @@ public abstract class Game {
 
 		int time = this.getGameTick();
 
-		System.out.println(sb1 + sb2 + "timesteps:" + time);
+		// System.out.println(sb1 + sb2 + "timesteps:" + time);
+		System.out.println(result + ";" + score + ";" + time + ";");
+
+		
 		// System.out.println("Result (1->win; 0->lose):"+ winner.key() + ",
 		// Score:" + score + ", timesteps:" + this.getGameTick());
 
