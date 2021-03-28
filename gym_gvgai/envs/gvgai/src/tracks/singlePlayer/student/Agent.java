@@ -32,7 +32,7 @@ public class Agent extends AbstractPlayer {
 
     // Init a playerlist
     protected ArrayList<SingleMCTSPlayer> playerList = new ArrayList<>();
-    private boolean debugging = false;
+    private boolean debugging = true;
 
     /**
      * Public constructor with state observation and time due.
@@ -52,7 +52,7 @@ public class Agent extends AbstractPlayer {
         num_actions = actions.length;
         
         // Create several players to run simultaniously and add them to a list
-        int num_threads = 8;
+        int num_threads = 1;
 
         for(int i = 0; i < num_threads; i++){
             SingleMCTSPlayer newPlayer = getPlayer(so, elapsedTimer);
@@ -90,9 +90,12 @@ public class Agent extends AbstractPlayer {
         int action = findMostCommonElement(ensembleResult);
         if(debugging) System.out.println(action);
 
-        if(debugging) System.exit(0);
+        // if(debugging) System.exit(0);
 
-        return actions[action];
+        System.out.println(ensembleResult.get(0));
+
+        return actions[ensembleResult.get(0)];
+        // return actions[action];
     }
 
     /**

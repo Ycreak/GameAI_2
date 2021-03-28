@@ -53,8 +53,8 @@ public class Test {
 		// ArcadeMachine.playOneGame(game, level1, recordActionsFile, seed);
 
 		// 2. This plays a game in a level by the controller.
-		// ArcadeMachine.runOneGame(game, level1, visuals, sampleMCTSController, recordActionsFile, seed, 0);
-
+		// ArcadeMachine.runOneGame(game, level1, visuals, studentController, recordActionsFile, seed, 0);
+		// System.exit(0);
 
 		// 3. This replays a game from an action file previously recorded
 		// String readActionsFile = recordActionsFile;
@@ -85,7 +85,7 @@ public class Test {
 				if(saveActions) for(int k = 0; k < M; ++k)
 				actionFiles[actionIdx++] = "actions_game_" + i + "_level_" + j + "_" + k + ".txt";
 			}
-			ArcadeMachine.runGames(game, levels, M, studentController, saveActions? actionFiles:null);
+			ArcadeMachine.runGames(game, levels, M, sampleMCTSController, saveActions? actionFiles:null);
 		}
 
 

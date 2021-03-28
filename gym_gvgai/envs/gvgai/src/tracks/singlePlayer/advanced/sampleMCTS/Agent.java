@@ -48,7 +48,7 @@ public class Agent extends AbstractPlayer {
         
         // System.out.println(temp.nextInt());
         
-        System.out.println("Calling ACT");
+        // System.out.println("Calling ACT");
         mctsPlayer = getPlayer(so, elapsedTimer);
         // mctsPlayer2 = getPlayer(so, elapsedTimer);
 
@@ -69,7 +69,7 @@ public class Agent extends AbstractPlayer {
     public Types.ACTIONS act(StateObservation stateObs, ElapsedCpuTimer elapsedTimer) {
 
         //Set the state observation object as the new root of the tree.
-        System.out.println("You called ACT");
+        // System.out.println("You called ACT");
 
         // Here we create a tree
 
@@ -81,7 +81,7 @@ public class Agent extends AbstractPlayer {
 
         //... and return it.
 
-        System.out.println(actions[action]);
+        // System.out.println(actions[action]);
 
 
         return actions[action];
