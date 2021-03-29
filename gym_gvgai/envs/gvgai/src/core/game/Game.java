@@ -1185,7 +1185,9 @@ public abstract class Game {
 		int time = this.getGameTick();
 
 		// System.out.println(sb1 + sb2 + "timesteps:" + time);
-		System.out.println(result + ";" + score + ";" + time + ";");
+		
+		
+		// System.out.println(result + ";" + score + ";" + time + ";");
 
 		
 		// System.out.println("Result (1->win; 0->lose):"+ winner.key() + ",
@@ -1193,7 +1195,7 @@ public abstract class Game {
 
 		// ArrayList<String> myList = new ArrayList<>();
 
-		WriteToFile(result, score, time);
+		// WriteToFile(result, score, time);
 
 	}
 
