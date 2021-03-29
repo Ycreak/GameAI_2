@@ -71,7 +71,7 @@ public class Test {
 		// }
 
 		//5. This plays N games, in the first L levels, M times each. Actions to file optional (set saveActions to true).
-		int N = games.length, L = 1, M = 1;
+		int N = games.length, L = 1, M = 10;
 		boolean saveActions = false;
 		String[] levels = new String[L];
 		String[] actionFiles = new String[L*M];
@@ -85,7 +85,7 @@ public class Test {
 				if(saveActions) for(int k = 0; k < M; ++k)
 				actionFiles[actionIdx++] = "actions_game_" + i + "_level_" + j + "_" + k + ".txt";
 			}
-			ArcadeMachine.runGames(game, levels, M, doNothingController, saveActions? actionFiles:null);
+			ArcadeMachine.runGames(game, levels, M, sampleMCTSController, saveActions? actionFiles:null);
 		}
 
 
