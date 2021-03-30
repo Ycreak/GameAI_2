@@ -67,9 +67,8 @@ public class SingleMCTSPlayer
         //Determine the best action to take and return it.
         // int action = m_root.mostVisitedAction();
         
+        // Result is a list of action and corresponding best value
         List<Double> result = m_root.findBestValue();
-
-        System.out.println(result);
 
         // return action;
         return result;

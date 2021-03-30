@@ -297,6 +297,7 @@ public class SingleTreeNode
             selected = bestAction();
         }
 
+        // Returns a list of the best value and the action corresponding to said value
         List<Double> result = new ArrayList<>();
                 
         result.add(Double.valueOf(selected));
