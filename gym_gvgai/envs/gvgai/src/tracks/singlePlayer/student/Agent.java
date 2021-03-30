@@ -33,7 +33,7 @@ public class Agent extends AbstractPlayer {
     // Init a playerlist
     protected ArrayList<SingleMCTSPlayer> playerList = new ArrayList<>();
     private boolean debugging = false;
-    private boolean majority_voting = true;
+    private boolean majority_voting = false;
 
     /**
      * Public constructor with state observation and time due.
