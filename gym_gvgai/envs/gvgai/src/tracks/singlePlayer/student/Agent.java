@@ -92,10 +92,7 @@ public class Agent extends AbstractPlayer {
 
         // if(debugging) System.exit(0);
 
-        System.out.println(ensembleResult.get(0));
-
-        return actions[ensembleResult.get(0)];
-        // return actions[action];
+        return actions[action];
     }
 
     /**
