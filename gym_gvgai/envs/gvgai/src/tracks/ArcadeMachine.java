@@ -516,7 +516,7 @@ public class ArcadeMachine {
 	}
 	
     // System.out.println("Results in game " + game_file + ", " + vict + " (mean victory), " + sc + " (mean score)");
-    System.out.println(vict + ";" + sc);
+    System.out.println(game_file + ";" + vict + ";" + sc);
 	 	//+ " , " + performance.mean());
 
     // // File (or directory) with old name

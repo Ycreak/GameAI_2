@@ -32,7 +32,8 @@ public class Agent extends AbstractPlayer {
 
     // Init a playerlist
     protected ArrayList<SingleMCTSPlayer> playerList = new ArrayList<>();
-    private boolean debugging = false;
+    private boolean debugging = true;
+    private boolean majority_voting = false;
 
     /**
      * Public constructor with state observation and time due.
@@ -83,16 +84,43 @@ public class Agent extends AbstractPlayer {
         }
     
         // Run the players in parallel using Java's Stream function. Collect the results in a list
-        List<Integer> ensembleResult = playerList.parallelStream().map(o -> o.run(elapsedTimer)).collect(Collectors.toList());
-        if(debugging) System.out.println(ensembleResult);
+        List<List<Double>> ensembleResult = playerList.parallelStream().map(o -> o.run(elapsedTimer)).collect(Collectors.toCollection(ArrayList::new));
         
-        // Do a majority vote for the ensemble: use that value
-        int action = findMostCommonElement(ensembleResult);
-        if(debugging) System.out.println(action);
+        if(debugging) System.out.println(ensembleResult);
 
-        // if(debugging) System.exit(0);
+        // If majority voting is selected, create a list of all verdicts and find the most common action   
+        if (majority_voting){
+            List<Integer> majorityList = new ArrayList<>();
 
-        return actions[action];
+            for(List<Double> treeResult : ensembleResult){
+                majorityList.add(treeResult.get(0).intValue());
+            }
+            
+            if(debugging) System.out.println(majorityList);
+            int action = findMostCommonElement(majorityList);
+            if(debugging) System.out.println(action);
+            return actions[action];
+        }
+
+        // No majority voting? We pick the highest value over all trees
+        else {
+            double highest = 0.0;
+            double move = 0.0;
+
+            for(List<Double> treeResult : ensembleResult){
+                if (treeResult.get(1) > highest){
+                    highest = treeResult.get(1);
+                    move = treeResult.get(0);
+                }
+            }
+
+            int move2 = (int)move;
+            if(debugging) System.out.println(move2);
+
+            // if(debugging) System.exit(0);
+            return actions[move2];
+
+        }
     }
 
     /**

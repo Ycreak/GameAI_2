@@ -2,6 +2,10 @@ package tracks.singlePlayer.student;
 
 import java.util.Random;
 
+import java.util.List;
+import java.util.Arrays;
+import java.util.ArrayList;
+
 import core.game.StateObservation;
 import ontology.Types;
 import tools.ElapsedCpuTimer;
@@ -256,6 +260,50 @@ public class SingleTreeNode
         }
         return selected;
     }
+
+    public List<Double> findBestValue() {
+        int selected = -1;
+        double bestValue = -Double.MAX_VALUE;
+        boolean allEqual = true;
+        double first = -1;
+
+        for (int i=0; i<children.length; i++) {
+
+            if(children[i] != null)
+            {
+                if(first == -1)
+                    first = children[i].nVisits;
+                else if(first != children[i].nVisits)
+                {
+                    allEqual = false;
+                }
+
+                double childValue = children[i].nVisits;
+                childValue = Utils.noise(childValue, this.epsilon, this.m_rnd.nextDouble());     //break ties randomly
+                if (childValue > bestValue) {
+                    bestValue = childValue;
+                    selected = i;
+                }
+            }
+        }
+
+        if (selected == -1)
+        {
+            System.out.println("Unexpected selection!");
+            selected = 0;
+        }else if(allEqual)
+        {
+            //If all are equal, we opt to choose for the one with the best Q.
+            selected = bestAction();
+        }
+
+        List<Double> result = new ArrayList<>();
+                
+        result.add(Double.valueOf(selected));
+        result.add(bestValue);
+
+        return result;
+    }    
 
     public int bestAction()
     {

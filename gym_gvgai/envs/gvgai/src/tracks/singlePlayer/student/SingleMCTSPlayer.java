@@ -2,6 +2,10 @@ package tracks.singlePlayer.student;
 
 import java.util.Random;
 
+import java.util.List;
+import java.util.Arrays;
+import java.util.ArrayList;
+
 import core.game.StateObservation;
 import ontology.Types;
 import tools.ElapsedCpuTimer;
@@ -25,6 +29,8 @@ public class SingleMCTSPlayer
      * Random generator.
      */
     public Random m_rnd;
+
+    public List<Double> result = new ArrayList<>();
 
     public int num_actions;
     public Types.ACTIONS[] actions;
@@ -53,16 +59,20 @@ public class SingleMCTSPlayer
      * @param elapsedTimer Timer when the action returned is due.
      * @return the action to execute in the game.
      */
-    public int run(ElapsedCpuTimer elapsedTimer)
+    public List<Double> run(ElapsedCpuTimer elapsedTimer)
     {
         //Do the search within the available time.
         m_root.mctsSearch(elapsedTimer);
 
         //Determine the best action to take and return it.
-        int action = m_root.mostVisitedAction();
-        // int action = m_root.bestAction();
+        // int action = m_root.mostVisitedAction();
+        
+        List<Double> result = m_root.findBestValue();
 
-        return action;
+        System.out.println(result);
+
+        // return action;
+        return result;
     }
 
 }
