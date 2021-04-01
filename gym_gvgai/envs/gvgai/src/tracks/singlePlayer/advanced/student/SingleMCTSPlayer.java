@@ -1,4 +1,4 @@
-package tracks.singlePlayer.student;
+package tracks.singlePlayer.advanced.student;
 
 import java.util.Random;
 

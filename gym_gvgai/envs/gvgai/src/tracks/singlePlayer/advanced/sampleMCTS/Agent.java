@@ -43,14 +43,7 @@ public class Agent extends AbstractPlayer {
         num_actions = actions.length;
         
         //Create the player.
-        // Random temp = new Random();
-        
-        
-        // System.out.println(temp.nextInt());
-        
-        // System.out.println("Calling ACT");
         mctsPlayer = getPlayer(so, elapsedTimer);
-        // mctsPlayer2 = getPlayer(so, elapsedTimer);
 
     }
 
@@ -68,34 +61,14 @@ public class Agent extends AbstractPlayer {
      */
     public Types.ACTIONS act(StateObservation stateObs, ElapsedCpuTimer elapsedTimer) {
 
-        //Set the state observation object as the new root of the tree.
-        // System.out.println("You called ACT");
-
         // Here we create a tree
-
         mctsPlayer.init(stateObs);
 
         //Determine the action using MCTS...
         int action = mctsPlayer.run(elapsedTimer);
-        // System.out.println("Act");
 
-        //... and return it.
-
-        // System.out.println(actions[action]);
-
-
+        // Return action
         return actions[action];
     }
 
 }
-
-// import java.util.stream.Stream; 
-
-
-		// ArrayList<String> myList = new ArrayList<>();
-		// myList.add("Item1");
-		// myList.add("Item2");
-
-		// range.parallelStream().forEach((o) -> {
-		// 	System.out.print(o + " ");
-		// });

@@ -26,7 +26,7 @@ public class Test {
 		String sampleRHEAController = "tracks.singlePlayer.advanced.sampleRHEA.Agent";
 		String sampleOLETSController = "tracks.singlePlayer.advanced.olets.Agent";
 
-		String studentController = "tracks.singlePlayer.student.Agent";
+		String studentController = "tracks.singlePlayer.advanced.student.Agent";
 
 
 		//Load available games

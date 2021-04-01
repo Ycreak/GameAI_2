@@ -24,6 +24,9 @@
 ./src/tracks/singlePlayer/advanced/olets/SingleMCTSPlayer.java
 ./src/tracks/singlePlayer/advanced/olets/SingleTreeNode.java
 ./src/tracks/singlePlayer/advanced/olets/Agent.java
+./src/tracks/singlePlayer/advanced/student/SingleMCTSPlayer.java
+./src/tracks/singlePlayer/advanced/student/SingleTreeNode.java
+./src/tracks/singlePlayer/advanced/student/Agent.java
 ./src/tracks/singlePlayer/simple/greedyTreeSearch/Agent.java
 ./src/tracks/singlePlayer/simple/greedyTreeSearch/TreeNode.java
 ./src/tracks/singlePlayer/simple/simpleRandom/Agent.java
@@ -44,9 +47,6 @@
 ./src/tracks/singlePlayer/tools/ucbOptimizerAgent/Agent.java
 ./src/tracks/singlePlayer/tools/ucbOptimizerAgent/Helper.java
 ./src/tracks/singlePlayer/tools/human/Agent.java
-./src/tracks/singlePlayer/student/SingleMCTSPlayer.java
-./src/tracks/singlePlayer/student/SingleTreeNode.java
-./src/tracks/singlePlayer/student/Agent.java
 ./src/tracks/singlePlayer/Test.java
 ./src/tracks/levelGeneration/LevelGenMachine.java
 ./src/tracks/levelGeneration/constraints/GoalConstraint.java

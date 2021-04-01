@@ -1,4 +1,4 @@
-package tracks.singlePlayer.student;
+package tracks.singlePlayer.advanced.student;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -16,7 +16,6 @@ import java.util.Arrays;
 
 import java.util.HashMap;
 import java.util.Map;
-// import java.util.Entry;
 import java.util.Collections;
 /**
  * Created with IntelliJ IDEA.
@@ -32,8 +31,10 @@ public class Agent extends AbstractPlayer {
 
     // Init a playerlist
     protected ArrayList<SingleMCTSPlayer> playerList = new ArrayList<>();
+    // Change your parameters here
     private boolean debugging = false;
     private boolean majority_voting = false;
+    private int num_threads = 4;
 
     /**
      * Public constructor with state observation and time due.
@@ -53,8 +54,6 @@ public class Agent extends AbstractPlayer {
         num_actions = actions.length;
         
         // Create several players to run simultaniously and add them to a list
-        int num_threads = 8;
-
         for(int i = 0; i < num_threads; i++){
             SingleMCTSPlayer newPlayer = getPlayer(so, elapsedTimer);
             playerList.add(newPlayer);
