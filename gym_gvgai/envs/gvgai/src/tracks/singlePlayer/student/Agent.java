@@ -53,7 +53,7 @@ public class Agent extends AbstractPlayer {
         num_actions = actions.length;
         
         // Create several players to run simultaniously and add them to a list
-        int num_threads = 4;
+        int num_threads = 8;
 
         for(int i = 0; i < num_threads; i++){
             SingleMCTSPlayer newPlayer = getPlayer(so, elapsedTimer);

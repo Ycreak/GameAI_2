@@ -1,5 +1,2 @@
-0,examples/gridphysics/aliens.txt
-1,examples/gridphysics/butterflies.txt
-2,examples/gridphysics/chopper.txt
-3,examples/gridphysics/defem.txt
-4,examples/gridphysics/lemmings.txt
+0;examples/gridphysics/islands.txt
+1;examples/gridphysics/jaws.txt
